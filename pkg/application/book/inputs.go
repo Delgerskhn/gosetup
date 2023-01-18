@@ -1,4 +1,4 @@
-package inputs
+package book
 
 import domain "github.com/delgerskhn/gosetup/pkg/domain/entities"
 
