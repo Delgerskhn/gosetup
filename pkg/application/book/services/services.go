@@ -9,9 +9,12 @@ import (
 	repo "github.com/delgerskhn/gosetup/pkg/infrastructure/persistence/repository"
 )
 
-var repository = repo.NewRepository[gorm.BookGorm, domain.Book](db)
+var repository *repo.GormRepository[gorm.BookGorm, domain.Book]
 
-var db = persistence.GetDB()
+func init() {
+	db := persistence.GetDB()
+	repository = repo.NewRepository[gorm.BookGorm, domain.Book](db)
+}
 
 func ChangeAuthor(id string, author string) error {
 	book, err := repository.FindByID(context.Background(), id)
